@@ -29,59 +29,6 @@ public class DemoFragment extends Fragment {
     private Survey mSurvey;
     private boolean mBlurred = false;
 
-    private Survey.SurvataLogger mSurvataLogger = new Survey.SurvataLogger() {
-
-        @Override
-        public void surveyLogVerbose(String tag, String msg) {
-
-        }
-
-        @Override
-        public void surveyLogVerbose(String tag, String msg, Throwable tr) {
-
-        }
-
-        @Override
-        public void surveyLogDebug(String tag, String msg) {
-
-        }
-
-        @Override
-        public void surveyLogDebug(String tag, String msg, Throwable tr) {
-
-        }
-
-        @Override
-        public void surveyLogInfo(String tag, String msg) {
-
-        }
-
-        @Override
-        public void surveyLogInfo(String tag, String msg, Throwable tr) {
-
-        }
-
-        @Override
-        public void surveyLogWarn(String tag, String msg) {
-
-        }
-
-        @Override
-        public void surveyLogWarn(String tag, String msg, Throwable tr) {
-
-        }
-
-        @Override
-        public void surveyLogError(String tag, String msg) {
-
-        }
-
-        @Override
-        public void surveyLogError(String tag, String msg, Throwable tr) {
-
-        }
-    };
-
     public int getTitleResId() {
         return R.string.survey_demo;
     }
@@ -127,7 +74,7 @@ public class DemoFragment extends Fragment {
         option.contentName = Settings.getContentName(context);
 
         mSurvey = new Survey(option);
-//        mSurvey.setSurvataLogger(mSurvataLogger);
+//        Survey.setSurvataLogger(mSurvataLogger);
         mSurvey.create(getActivity(),
                 new Survey.SurveyAvailabilityListener() {
                     @Override
@@ -145,12 +92,8 @@ public class DemoFragment extends Fragment {
                                 info = "not available";
                                 showFullView();
                                 break;
-                            case SERVER_ERROR:
-                                info = "server error";
-                                showFullView();
-                                break;
-                            case NETWORK_NOT_AVAILABLE:
-                                info = "network not available";
+                            case ERROR:
+                                info = "error";
                                 showFullView();
                                 break;
                             default:
